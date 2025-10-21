@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="inverted_pendulum_urdf">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="4.3501E-06 -4.2697E-05 0.092689"
+        rpy="0 0 0" />
+      <mass
+        value="0.95131" />
+      <inertia
+        ixx="0.0014941"
+        ixy="4.127E-09"
+        ixz="-7.6528E-08"
+        iyy="0.0014065"
+        iyz="8.8077E-10"
+        izz="0.00063065" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://inverted_pendulum_urdf/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://inverted_pendulum_urdf/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="revolute_Link">
+    <inertial>
+      <origin
+        xyz="-0.006421 -6.0301E-05 -0.088876"
+        rpy="0 0 0" />
+      <mass
+        value="0.59059" />
+      <inertia
+        ixx="0.00049829"
+        ixy="-2.4785E-09"
+        ixz="-6.1526E-09"
+        iyy="0.00052717"
+        iyz="4.8561E-09"
+        izz="0.00032031" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://inverted_pendulum_urdf/meshes/revolute_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.65098 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://inverted_pendulum_urdf/meshes/revolute_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="revolute_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.2"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="revolute_Link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="first_pendulum_link">
+    <inertial>
+      <origin
+        xyz="4.3633E-10 -0.048573 -0.0044757"
+        rpy="0 0 0" />
+      <mass
+        value="0.082896" />
+      <inertia
+        ixx="0.00010601"
+        ixy="-2.4585E-13"
+        ixz="-3.2692E-13"
+        iyy="6.3774E-06"
+        iyz="-2.3594E-08"
+        izz="0.00010061" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://inverted_pendulum_urdf/meshes/first_pendulum_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.65098 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://inverted_pendulum_urdf/meshes/first_pendulum_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="first_pendulum_joint"
+    type="revolute">
+    <origin
+      xyz="-0.107 -0.0002 0.023198"
+      rpy="1.5708 0 -1.5708" />
+    <parent
+      link="revolute_Link" />
+    <child
+      link="first_pendulum_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="second_pendulum_link">
+    <inertial>
+      <origin
+        xyz="-8.3003E-11 -0.045364 1.7939E-11"
+        rpy="0 0 0" />
+      <mass
+        value="0.019045" />
+      <inertia
+        ixx="3.3651E-06"
+        ixy="5.2246E-14"
+        ixz="-5.4428E-16"
+        iyy="3.1141E-06"
+        iyz="-3.0669E-14"
+        izz="3.3642E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://inverted_pendulum_urdf/meshes/second_pendulum_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://inverted_pendulum_urdf/meshes/second_pendulum_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="second_pendulum_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.1432 0"
+      rpy="0 0 0" />
+    <parent
+      link="first_pendulum_link" />
+    <child
+      link="second_pendulum_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>
