@@ -1,0 +1,20 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+    use_sim_time: true
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    effort_controller:
+      type: effort_controllers/JointGroupEffortController
+
+
+effort_controller:
+  ros__parameters:
+    use_sim_time: true
+    joints:
+      - rail_to_slider
+      - base_joint
+      - hip_joint
+      - knee_joint
