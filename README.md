@@ -1,3 +1,3 @@
-ros2 launch double_inverted_pendulum lqr_controller_standalone.launch.py
+ros2 launch double_inverted_pendulum lqr_controller.launch.py
 
 ros2 launch double_invert_pendulum_simulation simulation_full_launch.py
