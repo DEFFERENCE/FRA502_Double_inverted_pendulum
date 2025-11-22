@@ -3,21 +3,21 @@
      Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
-  name="inverted_pendulum_URDF">
+  name="double_invert_pendulum_description">
   <link
     name="base_link">
     <inertial>
       <origin
-        xyz="4.35011143188239E-06 -4.26974202710915E-05 0.0926893522450359"
+        xyz="4.35011143188255E-06 -4.26974202710952E-05 0.0926893522450359"
         rpy="0 0 0" />
       <mass
         value="0.951310569253784" />
       <inertia
         ixx="0.00149406454043322"
-        ixy="4.12697804108289E-09"
-        ixz="-7.65282756367958E-08"
+        ixy="4.1269780410918E-09"
+        ixz="-7.65282756367952E-08"
         iyy="0.00140648625642533"
-        iyz="8.80770910699998E-10"
+        iyz="8.80770910696327E-10"
         izz="0.000630646344660402" />
     </inertial>
     <visual>
@@ -26,7 +26,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/home/prime/ros2_project_ws/src/double_invert_pendulum_description/meshes/base_link.STL" />
+          filename="package://double_invert_pendulum_description/meshes/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -40,7 +40,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/home/prime/ros2_project_ws/src/double_invert_pendulum_description/meshes/base_link.STL" />
+          filename="package://double_invert_pendulum_description/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -48,17 +48,17 @@
     name="revolute_Link">
     <inertial>
       <origin
-        xyz="-0.0175370700578145 -0.00016469410235089 0.00111078231813694"
+        xyz="-0.0286909334248885 -0.000165321852001084 0.00149997929858667"
         rpy="0 0 0" />
       <mass
-        value="0.216240646404497" />
+        value="0.22015507085087" />
       <inertia
-        ixx="5.58988467068262E-05"
-        ixy="-2.47845250293903E-09"
-        ixz="-6.15261336732486E-09"
-        iyy="8.47733759009359E-05"
-        iyz="4.85611321474861E-09"
-        izz="0.000107267938774701" />
+        ixx="5.59477770124058E-05"
+        ixy="-2.47845250294301E-09"
+        ixz="-6.15261336732562E-09"
+        iyy="0.000114971529494517"
+        iyz="4.85611321473666E-09"
+        izz="0.000137466092368282" />
     </inertial>
     <visual>
       <origin
@@ -66,7 +66,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/home/prime/ros2_project_ws/src/double_invert_pendulum_description/meshes/revolute_Link.STL" />
+          filename="package://double_invert_pendulum_description/meshes/revolute_Link.STL" />
       </geometry>
       <material
         name="">
@@ -80,7 +80,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/home/prime/ros2_project_ws/src/double_invert_pendulum_description/meshes/revolute_Link.STL" />
+          filename="package://double_invert_pendulum_description/meshes/revolute_Link.STL" />
       </geometry>
     </collision>
   </link>
@@ -106,16 +106,16 @@
     name="first_pendulum_link">
     <inertial>
       <origin
-        xyz="-1.00551614541671E-07 -0.0646186151454772 -0.00362087479361183"
+        xyz="-1.00551614626808E-07 -0.0646208421547946 -0.00362087479361176"
         rpy="0 0 0" />
       <mass
-        value="0.0997302210483473" />
+        value="0.0997302210483471" />
       <inertia
-        ixx="0.000174588068807012"
-        ixy="-2.95045790870356E-10"
-        ixz="2.21709158691471E-11"
+        ixx="0.000174588068807011"
+        ixy="-2.95045790865843E-10"
+        ixz="2.21709158691669E-11"
         iyy="6.96835664909535E-06"
-        iyz="5.24978381703527E-07"
+        iyz="5.24978381703526E-07"
         izz="0.000169216758156749" />
     </inertial>
     <visual>
@@ -124,7 +124,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/home/prime/ros2_project_ws/src/double_invert_pendulum_description/meshes/first_pendulum_link.STL" />
+          filename="package://double_invert_pendulum_description/meshes/first_pendulum_link.STL" />
       </geometry>
       <material
         name="">
@@ -138,7 +138,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/home/prime/ros2_project_ws/src/double_invert_pendulum_description/meshes/first_pendulum_link.STL" />
+          filename="package://double_invert_pendulum_description/meshes/first_pendulum_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -146,7 +146,7 @@
     name="first_pendulum_joint"
     type="continuous">
     <origin
-      xyz="-0.107 -0.0002 0.023198"
+      xyz="-0.157 -0.0002 0.0232"
       rpy="1.5708 0 -1.5708" />
     <parent
       link="revolute_Link" />
@@ -164,17 +164,17 @@
     name="second_pendulum_link">
     <inertial>
       <origin
-        xyz="-2.8765755728709E-06 -0.0299439674255459 0.00119447713150889"
+        xyz="-1.37241877775095E-07 -0.0553657542543718 0.000364883293048152"
         rpy="0 0 0" />
       <mass
-        value="0.00680601326910171" />
+        value="0.0733318769925464" />
       <inertia
-        ixx="1.8911424822564E-06"
-        ixy="-9.8432286079085E-12"
-        ixz="2.35767361175274E-10"
-        iyy="2.84550526022121E-07"
-        iyz="3.87915762114474E-08"
-        izz="2.05641965585819E-06" />
+        ixx="0.000168690593331268"
+        ixy="2.94799944877995E-10"
+        ixz="-2.24978351021251E-11"
+        iyy="1.02496796632714E-06"
+        iyz="5.48572430725862E-07"
+        izz="0.000168736683605543" />
     </inertial>
     <visual>
       <origin
@@ -182,12 +182,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/home/prime/ros2_project_ws/src/double_invert_pendulum_description/meshes/second_pendulum_link.STL" />
+          filename="package://double_invert_pendulum_description/meshes/second_pendulum_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
       </material>
     </visual>
     <collision>
@@ -196,7 +196,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="/home/prime/ros2_project_ws/src/double_invert_pendulum_description/meshes/second_pendulum_link.STL" />
+          filename="package://double_invert_pendulum_description/meshes/second_pendulum_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -204,7 +204,7 @@
     name="second_pendulum_joint"
     type="continuous">
     <origin
-      xyz="0 -0.1432 0.0095"
+      xyz="0 -0.1432 0.0135"
       rpy="0 0 0" />
     <parent
       link="first_pendulum_link" />

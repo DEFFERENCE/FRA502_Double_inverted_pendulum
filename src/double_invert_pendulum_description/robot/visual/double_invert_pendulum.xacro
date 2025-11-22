@@ -9,21 +9,17 @@
     <!-- WORLD LINK (Fixed to ground) -->
     <link name="world"/>
     
-    <!-- FIXED JOINT (Base stuck to ground - no cart movement) -->
+    <!-- FIXED JOINT - RAISED TO PREVENT GROUND COLLISION -->
     <joint name="base" type="fixed">
         <parent link="world"/>
         <child link="base_link"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>  <!-- Base origin at ground level -->
+        <!-- Raised by 0.5m to keep pendulums above ground when hanging down -->
+        <origin xyz="0 0 0.5" rpy="0 0 0"/>
     </joint>
     
     <!-- BASE LINK -->
     <link name="base_link">
-        <!-- 
-          FIX: Using macro to calculate inertia from the mass variable 
-          in pendulum_params.xacro and the collision box size.
-        -->
         <xacro:inertial_box mass="${mass_base}" x="0.25" y="0.15" z="0.18">
-            <!-- Origin from original URDF -->
             <origin xyz="4.35011143188239E-06 -4.26974202710915E-05 0.0926893522450359" rpy="0 0 0" />
         </xacro:inertial_box>
 
@@ -42,7 +38,7 @@
         </collision>
     </link>
 
-    <!-- REVOLUTE LINK (CONTINUOUS - unlimited rotation) -->
+    <!-- REVOLUTE LINK (ARM - CONTINUOUS ROTATION) -->
     <joint name="revolute_joint" type="continuous">
         <parent link="base_link"/>
         <child link="revolute_Link"/>
@@ -53,13 +49,7 @@
     </joint>
 
     <link name="revolute_Link">
-        <!-- 
-          FIX: Using inertial_cylinder macro to calculate inertia based on
-          the '${mass_revolute}' variable from pendulum_params.xacro.
-          This replaces the hard-coded PDF values.
-        -->
         <xacro:inertial_cylinder mass="${mass_revolute}" length="0.05" radius="0.03">
-             <!-- Origin from SolidWorks PDF, converted to meters -->
             <origin xyz="-0.0393104703 -0.0011200394 -0.0049654099" rpy="0 0 0" />
         </xacro:inertial_cylinder>
 
@@ -89,12 +79,7 @@
     </joint>
 
     <link name="first_pendulum_link">
-        <!-- 
-          FIX: Using inertial_box macro to calculate inertia based on
-          the '${mass_pendulum1}' variable from pendulum_params.xacro.
-        -->
         <xacro:inertial_box mass="${mass_pendulum1}" x="0.02" y="0.14" z="0.02">
-            <!-- Origin from SolidWorks PDF, converted to meters -->
             <origin xyz="-0.0000001372 -0.0878320187 0.0001351167" rpy="0 0 0" />
         </xacro:inertial_box>
 
@@ -124,12 +109,7 @@
     </joint>
 
     <link name="second_pendulum_link">
-        <!-- 
-          FIX: Using inertial_box macro to calculate inertia based on
-          the '${mass_pendulum2}' variable from pendulum_params.xacro.
-        -->
         <xacro:inertial_box mass="${mass_pendulum2}" x="0.015" y="0.06" z="0.015">
-            <!-- Origin from SolidWorks PDF, converted to meters -->
             <origin xyz="-0.0000028766 -0.0299439674 0.001944771" rpy="0 0 0" />
         </xacro:inertial_box>
 
@@ -149,4 +129,3 @@
     </link>
 
 </robot>
-

@@ -4,43 +4,109 @@
     <!-- Constants -->
     <xacro:property name="PI" value="3.14159265359"/>
     
-    <!-- Joint positions from original URDF -->
+    <!-- ========================================== -->
+    <!-- JOINT POSITIONS (from inverted_pendulum_new.urdf) -->
+    <!-- ========================================== -->
+    
+    <!-- Revolute joint (arm) position -->
     <xacro:property name="revolute_joint_x" value="0"/>
     <xacro:property name="revolute_joint_y" value="0"/>
     <xacro:property name="revolute_joint_z" value="0.2"/>
     
-    <xacro:property name="pendulum1_joint_x" value="-0.107"/>
+    <!-- First pendulum joint position -->
+    <xacro:property name="pendulum1_joint_x" value="-0.157"/>
     <xacro:property name="pendulum1_joint_y" value="-0.0002"/>
-    <xacro:property name="pendulum1_joint_z" value="0.023198"/>
+    <xacro:property name="pendulum1_joint_z" value="0.0232"/>
     
+    <!-- Second pendulum joint position -->
     <xacro:property name="pendulum2_joint_x" value="0"/>
     <xacro:property name="pendulum2_joint_y" value="-0.1432"/>
-    <xacro:property name="pendulum2_joint_z" value="0.0095"/>
+    <xacro:property name="pendulum2_joint_z" value="0.0135"/>
     
-    <!-- 
-      Masses updated to match SolidWorks PDF reports (converted g -> kg)
-    -->
-    <xacro:property name="mass_base" value="0.5"/> <!-- Value from previous file, no PDF provided -->
-    <xacro:property name="mass_revolute" value="0.134003"/> <!-- 134.003 g -->
-    <xacro:property name="mass_pendulum1" value="0.050"/>    <!-- 50.0 g -->
-    <xacro:property name="mass_pendulum2" value="0.015"/>    <!-- 15.0 g -->
+    <!-- ========================================== -->
+    <!-- MASSES (from inverted_pendulum_new.urdf) -->
+    <!-- ========================================== -->
+    <xacro:property name="mass_base" value="0.951310569253784"/>
+    <xacro:property name="mass_revolute" value="0.22015507085087"/>
+    <xacro:property name="mass_pendulum1" value="0.190"/>  <!-- ~0.1 kg -->
+    <xacro:property name="mass_pendulum2" value="0.140"/>  <!-- ~0.073 kg -->
     
-    <!-- Joint limits - converted from continuous to revolute -->
-    <xacro:property name="joint_effort" value="100"/>
-    <xacro:property name="joint_velocity" value=" 50.0 "/>
-    <xacro:property name="joint_lower_limit" value="${-PI}"/>
-    <xacro:property name="joint_upper_limit" value="${PI}"/>
+    <!-- ========================================== -->
+    <!-- RESEARCH PAPER PARAMETERS -->
+    <!-- From "Transition Control of a Rotary Double Inverted Pendulum Using Direct Collocation" -->
+    <!-- ========================================== -->
     
-    <!-- Joint dynamics - Revolute Joint -->
-    <xacro:property name="revolute_joint_damping" value="0.001"/>
-    <xacro:property name="revolute_joint_friction" value="0.02"/>
+    <!-- Masses (for validation - should match above or be adjusted) -->
+    <xacro:property name="M1_paper" value="0.187"/>  <!-- First pendulum mass from paper -->
+    <xacro:property name="M2_paper" value="0.132"/>  <!-- Second pendulum mass from paper -->
     
-    <!-- Joint dynamics - First Pendulum -->
-    <xacro:property name="first_pendulum_damping" value="0.001"/>
-    <xacro:property name="first_pendulum_friction" value="0.1"/>
+    <!-- Center of Mass Lengths -->
+    <xacro:property name="l1" value="0.072"/>   <!-- First pendulum CoM from pivot -->
+    <xacro:property name="l2" value="0.133"/>   <!-- Second pendulum CoM from pivot -->
     
-    <!-- Joint dynamics - Second Pendulum -->
-    <xacro:property name="second_pendulum_damping" value="0.001"/>
-    <xacro:property name="second_pendulum_friction" value="0.1"/>
+    <!-- Total Lengths -->
+    <xacro:property name="L1" value="0.1645"/>  <!-- First pendulum total length -->
+    <xacro:property name="R1" value="0.1625"/>  <!-- Arm radius -->
+    <xacro:property name="r1" value="0.1597"/>  <!-- Additional arm parameter -->
+    <xacro:property name="r2" value="0.0209"/>  <!-- Additional parameter -->
+    
+    <!-- Inertias (kg·m²) from research paper -->
+    <xacro:property name="Ixx1" value="1.0415e-3"/>
+    <xacro:property name="Ixx2" value="8.8210e-4"/>
+    <xacro:property name="Iyy1" value="4.3569e-3"/>
+    <xacro:property name="Iyy2" value="4.9793e-3"/>
+    <xacro:property name="Izz1" value="3.3179e-3"/>
+    <xacro:property name="Izz2" value="4.8178e-3"/>
+    <xacro:property name="Ixz1" value="3.7770e-4"/>
+    <xacro:property name="Ixz2" value="1.9823e-4"/>
+    
+    <!-- Friction coefficients from paper -->
+    <xacro:property name="c1_paper" value="2.41e-6"/>
+    <xacro:property name="c2_paper" value="1.09e-6"/>
+    
+    <!-- ========================================== -->
+    <!-- JOINT LIMITS AND DYNAMICS -->
+    <!-- ========================================== -->
+    
+    <!-- Joint effort and velocity limits -->
+    <xacro:property name="joint_effort" value="7.5"/>
+    <xacro:property name="joint_velocity" value="15.0"/>
+    <xacro:property name="joint_lower_limit" value="${-2*PI}"/>
+    <xacro:property name="joint_upper_limit" value="${2*PI}"/>
+    
+    <!-- Revolute Joint (Arm) Dynamics - ACTUATED -->
+    <xacro:property name="revolute_joint_damping" value="${c1_paper}"/>
+    <xacro:property name="revolute_joint_friction" value="0.001"/>
+    
+    <!-- First Pendulum Joint Dynamics - PASSIVE -->
+    <xacro:property name="first_pendulum_damping" value="${c1_paper}"/>
+    <xacro:property name="first_pendulum_friction" value="0.001"/>
+    
+    <!-- Second Pendulum Joint Dynamics - PASSIVE -->
+    <xacro:property name="second_pendulum_damping" value="${c2_paper}"/>
+    <xacro:property name="second_pendulum_friction" value="0.001"/>
+    
+    <!-- ========================================== -->
+    <!-- COLLISION GEOMETRY PARAMETERS -->
+    <!-- ========================================== -->
+    
+    <!-- Base collision box -->
+    <xacro:property name="base_box_x" value="0.25"/>
+    <xacro:property name="base_box_y" value="0.15"/>
+    <xacro:property name="base_box_z" value="0.18"/>
+    
+    <!-- Revolute link collision cylinder -->
+    <xacro:property name="revolute_radius" value="0.03"/>
+    <xacro:property name="revolute_length" value="0.05"/>
+    
+    <!-- First pendulum collision box -->
+    <xacro:property name="pendulum1_box_x" value="0.02"/>
+    <xacro:property name="pendulum1_box_y" value="0.14"/>
+    <xacro:property name="pendulum1_box_z" value="0.02"/>
+    
+    <!-- Second pendulum collision box -->
+    <xacro:property name="pendulum2_box_x" value="0.015"/>
+    <xacro:property name="pendulum2_box_y" value="0.11"/>
+    <xacro:property name="pendulum2_box_z" value="0.015"/>
     
 </robot>

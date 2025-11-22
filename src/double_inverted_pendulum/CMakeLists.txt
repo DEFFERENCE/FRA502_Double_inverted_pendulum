@@ -28,6 +28,7 @@ ament_python_install_package(${PROJECT_NAME})
 # Install Python executables
 install(PROGRAMS
   scripts/lqr_controller_node.py
+  scripts/trajectory_tracking_controller.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
@@ -50,6 +51,7 @@ install(DIRECTORY
   # add directories here
   config
   launch
+  trajectories 
   DESTINATION share/${PROJECT_NAME})
 
 ament_package()

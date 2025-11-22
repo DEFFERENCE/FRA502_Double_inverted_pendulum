@@ -1,0 +1,33 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/prime/lab4_ws/install/lab4_controller/include/**",
+        "/home/prime/lab3/install/turtlesim_plus_interfaces/include/**",
+        "/home/prime/lab3/install/controller_interfaces/include/**",
+        "/home/prime/fun3_ws/install/turtlesim_plus_interfaces/include/**",
+        "/home/prime/fun3_ws/install/fun3_interfaces/include/**",
+        "/home/prime/Lab2_ws/install/turtlesim_plus_interfaces/include/**",
+        "/home/prime/fun2_ws/install/turtlesim_plus_interfaces/include/**",
+        "/home/prime/Ros2/RoboticsDev2024/RoboticsDev2024-fun1/install/motorsim_interfaces/include/**",
+        "/home/prime/two_dof/install/cybergear_interfaces/include/**",
+        "/home/prime/multiverse-mission-peemai-prime/install/turtlesim_plus_interfaces/include/**",
+        "/home/prime/prepare_ex1_ws/install/turtlesim_plus_interfaces/include/**",
+        "/home/prime/prepare_ex1_ws/install/controller_interfaces/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/prime/ros2_project_ws/src/double_invert_pendulum_simulation/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ros2",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
+}

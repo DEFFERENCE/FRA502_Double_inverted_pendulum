@@ -1,0 +1,83 @@
+/**:
+  ros__parameters:
+    # ============================================================
+    # TRAJECTORY TRACKING CONTROLLER PARAMETERS
+    # ============================================================
+    # Based on Direct Collocation optimization
+    # Implements feedforward + time-varying LQR feedback control
+    # ============================================================
+    
+    control_frequency: 1000.0  # Hz (1 kHz for high-precision tracking)
+    
+    # ============================================================
+    # SYSTEM PARAMETERS (Extracted from URDF)
+    # ============================================================
+    
+    g: 9.81  # Gravity (m/s²)
+    
+    # First Pendulum (Body 1)
+    M1: 0.0997302210483473        # kg - first_pendulum_link mass
+    l1: 0.0647                    # m - First pendulum CoM distance
+    L1: 0.1436                    # m - First pendulum length (to second joint)
+    Ixx1: 0.000174588068807012    # kg·m² - First pendulum inertia
+    Iyy1: 6.96835664909535e-06    # kg·m²
+    Izz1: 0.000169216758156749    # kg·m²
+    Ixz1: 2.21709158691471e-11    # kg·m² (negligible)
+    
+    # Second Pendulum (Body 2)
+    M2: 0.00680601326910171       # kg - second_pendulum_link mass
+    l2: 0.0300                    # m - Second pendulum CoM distance
+    Ixx2: 1.8911424822564e-06     # kg·m² - Second pendulum inertia
+    Iyy2: 2.84550526022121e-07    # kg·m²
+    Izz2: 2.05641965585819e-06    # kg·m²
+    Ixz2: 2.35767361175274e-10    # kg·m² (negligible)
+    
+    # Arm (Body 0)
+    R1: 0.107                     # m - Arm radius (to first joint)
+    r1: 0.01753707                # m - Arm CoM radius
+    r2: 0.023198                  # m - Vertical offset at first joint
+    
+    # Friction coefficients
+    c1: 0.001                     # First pendulum damping
+    c2: 0.001                     # Second pendulum damping
+    
+    # ============================================================
+    # LQR TUNING PARAMETERS
+    # ============================================================
+    # Q matrix diagonal weights: [theta, alpha, beta, theta_dot, alpha_dot, beta_dot, int_theta]
+    Q_diag: [1.0, 500.0, 800.0, 1.0, 1.0, 1.0, 1.0]
+    R_weight: 0.1  # Control effort weight
+    
+    # ============================================================
+    # TRAJECTORY FILES
+    # ============================================================
+    # These files should be in the package's 'trajectories' directory
+    # or in the current working directory
+    trajectory_states_file: "rdip_trajectory_states.csv"
+    trajectory_control_file: "rdip_trajectory_control.csv"
+    lqr_gains_file: "rdip_lqr_gains_timevarying.csv"
+    
+    # ============================================================
+    # CONTROL LIMITS
+    # ============================================================
+    max_torque: 20.0              # Maximum arm torque (N·m)
+    enable_saturation: false       # Enable torque limiting
+    
+    # ============================================================
+    # ROS TOPICS
+    # ============================================================
+    joint_names:
+      - "revolute_joint"
+      - "first_pendulum_joint"
+      - "second_pendulum_joint"
+    
+    joint_states_topic: "/joint_states"
+    effort_command_topic: "/effort_controller/commands"
+    
+    publish_debug_info: true
+    debug_topic: "/trajectory_tracking_debug"
+    
+    # ============================================================
+    # STARTUP SETTINGS
+    # ============================================================
+    startup_delay: 2.0            # Delay before starting trajectory (seconds)
